@@ -66,8 +66,8 @@ async function run() {
       const email = req.decoded.email;
       const query = { email: email };
       const user = await userCollection.findOne(query);
-      if (user?.role !== 'admin'){
-        return res.status(403).send({error: true, message: 'forbidden access'});
+      if (user?.role !== 'admin') {
+        return res.status(403).send({ error: true, message: 'forbidden access' });
       }
       next()
     }
@@ -93,6 +93,47 @@ async function run() {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await allFoodsMenu.findOne(query);
+      res.send(result);
+    })
+
+    // ---->>>> Update Item <<<<----
+    app.put('/allMenu/:id', async (req, res) => {
+      const id = req.params.id;
+      const updateMenuItem = req.body;
+      // console.log(id, updateMenuItem)
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const updatedNotice = {
+        $set: {
+          title: updateMenuItem.title,
+          description: updateMenuItem.description,
+          ingredients: updateMenuItem.ingredients,
+          imageOne: updateMenuItem.imageOne,
+          imageTwo: updateMenuItem.imageTwo,
+          imageThree: updateMenuItem.imageThree,
+          imageFour: updateMenuItem.imageFour,
+          imageFive: updateMenuItem.imageFive,
+          price: updateMenuItem.price,
+          origin: updateMenuItem.origin,
+          flag: updateMenuItem.flag,
+          catagoryOne: updateMenuItem.catagoryOne,
+          catagoryTwo: updateMenuItem.catagoryTwo,
+          catagoryThree: updateMenuItem.catagoryThree,
+          catagoryFour: updateMenuItem.catagoryFour,
+          icon: updateMenuItem.icon,
+          price: updateMenuItem.price,
+        }
+      }
+      const result = await allFoodsMenu.updateOne(filter, updatedNotice, options);
+      res.send(result);
+    })
+
+    // ----->>>> Remove Item from Manage Item <<<<----
+    app.delete('/allMenu/:id', async (req, res) => {
+      const id = req.params.id;
+      // console.log(id);
+      const query = { _id: new ObjectId(id) };
+      const result = await allFoodsMenu.deleteOne(query);
       res.send(result);
     })
 
@@ -122,7 +163,7 @@ async function run() {
       // console.log(user);
       const query = { email: user.email }
       const existingUser = await userCollection.findOne(query);
-      console.log('existing user', existingUser);
+      // console.log('existing user', existingUser);
       if (existingUser) {
         return res.send({ message: 'user already exists' })
       }
@@ -136,10 +177,10 @@ async function run() {
       const email = req.body.email;
       const photoURL = req.body.photoURL;
       const googleUser = { displayName, email, photoURL };
-      console.log(googleUser);
+      // console.log(googleUser);
       const query = { email: googleUser.email }
       const existingUser = await userCollection.findOne(query);
-      console.log('existing user', existingUser);
+      // console.log('existing user', existingUser);
       if (existingUser) {
         return res.send({ message: 'user already exists' })
       }
@@ -148,15 +189,15 @@ async function run() {
     })
 
     //---->>>> load all user data <<<<----
-    app.get('/user',verifyJWT, verifyAdmin, async (req, res) => {
+    app.get('/user', verifyJWT, verifyAdmin, async (req, res) => {
       const result = await userCollection.find().toArray();
-      console.log(result)
+      // console.log(result)
       res.send(result);
     })
 
 
     //---->>>> Delete user <<<<-----
-    app.delete('/carts/:email', async (req, res) => {
+    app.delete('/user/:email', async (req, res) => {
       const email = req.params.email;
       const query = { email: email };
       const result = await userCollection.deleteOne(query);
@@ -166,7 +207,7 @@ async function run() {
     //---->>> Make Admin for any user <<<---
     app.patch('/user/admin/:id', async (req, res) => {
       const id = req.params.id;
-      console.log(id);
+      // console.log(id);
       const filter = { _id: new ObjectId(id) };
       const updateDoc = {
         $set: {
@@ -218,9 +259,22 @@ async function run() {
       res.send(result);
     })
 
+
+
+    // ---->>>> Add new Item <<<<-----
+    app.post('/newItem', async (req, res) => {
+      const newItemData = req.body;
+      // console.log(newItemData);
+      const result = await allFoodsMenu.insertOne(newItemData);
+      res.send(result);
+    })
+
+
+
     // ------>>> Delete Cart item <<<------
     app.delete('/carts/:id', async (req, res) => {
       const id = req.params.id;
+      // console.log(id);
       const query = { _id: new ObjectId(id) };
       const result = await cartCollection.deleteOne(query);
       res.send(result);
@@ -243,7 +297,7 @@ app.get('/', (req, res) => {
 
 
 // ---->>>>> Upload Resize Image <<<<----
-app.post('/addDoctor', (req, res) => {
+app.post('/addImage', (req, res) => {
   const file = req.files.file;
   console.log(file);
   file.mv(`${__dirname}/resizeImage/${file.name}`, err => {
