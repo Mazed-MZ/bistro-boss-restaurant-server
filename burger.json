@@ -1,0 +1,43 @@
+// title, description, ingredients, imageOne, imageTwo, imageThree, imageFour, imageFive, price, origin, quantity, flag, catagoryOne, catagoryTwo, catagoryThree
+[
+    {
+        "title": "Classic Cheese Burger",
+        "productID":"107",
+        "description": "A cheeseburger is a hamburger with a slice of melted cheese on top of the meat patty. As with other hamburgers, a cheeseburger may include various condiments and other toppings such as lettuce, bacon, avocado, mushrooms, mayonnaise, ketchup.",
+        "ingredients": "🔶American Cheese 🔶Swiss Cheese 🔶Cheddar Cheese 🔶Lettuce 🔶Tomato 🔶Onion 🔶Pickles 🔶bacon 🔶Avocado 🔶Sauteed Mushrooms 🔶Cheese Sauce 🔶Chili",
+        "imageOne": "http://localhost:5000/Classic-Cheeseburger-0488.jpg",
+        "imageTwo": "http://localhost:5000/delicious-juicy-cheeseburger-close-up-from-brioche-bun-beef-cheese-onion-tomato-cucumber-sauce.jpg",
+        "imageThree": "http://localhost:5000/Cheese-burger.png",
+        "imageFour": "http://localhost:5000/Cheeseburger.jpg",
+        "imageFive": "http://localhost:5000/fresh-tasty-beef-burger-with-cheese-french-fries_1339-90565.jpg",
+        "origin": "United States of America",
+        "catagoryOne":"popular",
+        "catagoryTwo":"",
+        "catagoryThree": "",
+        "catagoryFour": "burger",
+        "icon":"http://localhost:5000/pngtree-editable-burger-vector-clipart.png",
+        "flag": "https://w0.peakpx.com/wallpaper/918/537/HD-wallpaper-american-flag-usa-flag-usa-flag-3d.jpg",
+        "price": 28.4,
+        "quantity": 0
+    },
+    {
+        "title": "Grilled Chicken Ranch Burgers",
+        "productID":"108",
+        "description": "This is one of the most fantastic, flavorful burgers I've ever made. Ranch is a favorite in dips and dressings, and believe me, it doesn't disappoint in these burgers, either! —Kari Shifflett, Lake Mills, Iowa",
+        "ingredients": "🔶Ranch salad dressing 🔶Panko bread crumbs 🔶Grated parmesan cheese 🔶Worcestershire sauce, garlic cloves, minced 🔶Ground chicken 🔶Olive oil 🔶Hamburger buns, split 🔶Optional toppings: Tomato slices, lettuce leaves, sliced red onion, sliced cucumber, sliced avocado and ranch dip",
+        "imageOne": "http://localhost:5000/8321460-32444a628e684ac59b02c66629699633.jpg",
+        "imageTwo": "http://localhost:5000/72bb3758-9597-4979-b6a9-0488d787511e.jpg",
+        "imageThree": "http://localhost:5000/buffalo+ranch+chicken+burgers-3.jpg",
+        "imageFour": "http://localhost:5000/Chicken-Burgers-5.jpg",
+        "imageFive": "http://localhost:5000/chicken-potato-and-carrot-patties-1838-1.jpeg",
+        "origin": "Australia",
+        "catagoryOne":"",
+        "catagoryTwo":"",
+        "catagoryThree": "recommended",
+        "catagoryFour": "burger",
+        "icon":"http://localhost:5000/pngtree-editable-burger-vector-clipart.png",
+        "flag": "https://t3.ftcdn.net/jpg/02/54/42/52/360_F_254425270_4947IJ0J2aYNbX1ORvcKuXtrHl0KLWaF.jpg",
+        "price": 45,
+        "quantity": 0
+    }
+]
