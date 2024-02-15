@@ -447,6 +447,15 @@ async function run() {
       res.send(result);
     })
 
+    // ----->>>> Load individual reviews <<<<-----
+    // app.get('/myreview/:email', async (req, res) => {
+    //   const email = req.params.email;
+    //   // console.log(email);
+    //   const query = { userEmail: email};
+    //   const result = await reviewCollection.findOne(query);
+    //   res.send(result);
+    // })
+
     // ---->>>> Delete Review <<<<----
     app.delete('/addreview/:id', async (req, res) => {
       const id = req.params.id;
