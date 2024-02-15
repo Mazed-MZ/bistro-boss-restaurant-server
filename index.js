@@ -52,6 +52,7 @@ async function run() {
     const cartCollection = client.db("BistroBossDB").collection("cartCollection");
     const userCollection = client.db("BistroBossDB").collection("userCollection");
     const paymentCollection = client.db("BistroBossDB").collection("paymentCollection");
+    const reviewCollection = client.db("BistroBossDB").collection("reviewCollection");
 
 
 
@@ -394,7 +395,7 @@ async function run() {
 
 
     // ------>>>> Order Statistics <<<<------
-    app.get('/order-state',  async (req, res) => {
+    app.get('/order-state', async (req, res) => {
       const result = await paymentCollection.aggregate([
         {
           $unwind: '$menuItemIds'
@@ -427,6 +428,31 @@ async function run() {
         }
       ]).toArray();
 
+      res.send(result);
+    })
+
+
+    // ----->>>> Add review <<<<-----
+    app.post('/addreview', async (req, res) => {
+      const review = req.body;
+      // console.log(review);
+      const result = await reviewCollection.insertOne(review);
+      res.send(result);
+    })
+
+    // ---->>>> Load Reviews <<<<----
+    app.get('/addreview', async (req, res) => {
+      const allReview = reviewCollection.find();
+      const result = await allReview.toArray();
+      res.send(result);
+    })
+
+    // ---->>>> Delete Review <<<<----
+    app.delete('/addreview/:id', async (req, res) => {
+      const id = req.params.id;
+      // console.log(email);
+      const query = { _id: new ObjectId(id) };
+      const result = await reviewCollection.deleteOne(query);
       res.send(result);
     })
 
