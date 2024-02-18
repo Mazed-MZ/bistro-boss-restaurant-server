@@ -146,7 +146,7 @@ async function run() {
       const displayName = req.body.name;
       const email = req.body.email;
       const password = req.body.password;
-      const photoURL = `http://localhost:5000/${file.name}`;
+      const photoURL = `https://bistro-boss-restaurant-server.onrender.com/${file.name}`;
       // console.log(file, name, email, password, photoURL);
       const newUser = { displayName, email, password, photoURL };
 
